@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parser-habr", "Parser-habr\Parser-habr.csproj", "{DBDEF95B-E292-49CC-949C-1096B78C4B04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserBase", "ParserBase\ParserBase.csproj", "{EE71D079-185F-48F1-9AFF-C9963DE3503C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saver", "Saver\Saver.csproj", "{9CD322E8-F9B4-4E34-8FA1-03AD923497AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBDEF95B-E292-49CC-949C-1096B78C4B04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBDEF95B-E292-49CC-949C-1096B78C4B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBDEF95B-E292-49CC-949C-1096B78C4B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBDEF95B-E292-49CC-949C-1096B78C4B04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE71D079-185F-48F1-9AFF-C9963DE3503C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE71D079-185F-48F1-9AFF-C9963DE3503C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE71D079-185F-48F1-9AFF-C9963DE3503C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE71D079-185F-48F1-9AFF-C9963DE3503C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CD322E8-F9B4-4E34-8FA1-03AD923497AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CD322E8-F9B4-4E34-8FA1-03AD923497AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CD322E8-F9B4-4E34-8FA1-03AD923497AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CD322E8-F9B4-4E34-8FA1-03AD923497AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9682525-1BD3-4A17-B933-30357A72A330}
+	EndGlobalSection
+EndGlobal
