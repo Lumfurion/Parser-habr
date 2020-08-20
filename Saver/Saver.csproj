@@ -53,6 +53,7 @@
     <Compile Include="ExcelSaver\ExcelExport.cs" />
     <Compile Include="ExcelSaver\GenerateFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlSaver\Genarate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

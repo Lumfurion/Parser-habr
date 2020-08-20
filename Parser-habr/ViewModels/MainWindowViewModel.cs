@@ -5,13 +5,16 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using Saver.ExcelSaver;
+using Saver.XmlSaver;
+using System.Linq;
 
 namespace Parser_habr.ViewModels
 {
     
     class MainWindowViewModel:ModelBase
     {
-        readonly ParserWorker<HabrData[]> Parser;
+        readonly ParserWorker<Article[]> Parser;
+        public ObservableCollection<Article> Articles { get; set; }
         int startPage { get; set; } = 1;
         public int StartPage
         {
@@ -33,24 +36,21 @@ namespace Parser_habr.ViewModels
                 OnPropertyChanged("EndPage");
             }
         }
-
-        public ObservableCollection<HabrData> List { get; set; }
-
         public MainWindowViewModel()
         {
-            List = new ObservableCollection<HabrData>();
-            Parser = new ParserWorker<HabrData[]>(new HabrParser());
+            Articles = new ObservableCollection<Article>();
+            Parser = new ParserWorker<Article[]>(new HabrParser());
             //По заврешению работы парсера будет появляться уведомляющее окно.
             Parser.OnComplited += Parser_OnComplited;
             //Заполняем наш listBox заголовками
             Parser.OnNewData += Parser_OnNewData;
         }
         public void Parser_OnComplited(object o) { MessageBox.Show("Работа завершена!"); }
-        public void Parser_OnNewData(object o, HabrData[] item) 
+        public void Parser_OnNewData(object o, Article[] item) 
         {
             foreach (var i in item)
             {
-                List.Add(new HabrData(i.Title, i.Text, i.Image));
+                Articles.Add(new Article(i.Title, i.Text, i.Image));
             }
         }
 
@@ -63,7 +63,7 @@ namespace Parser_habr.ViewModels
                 {
                     goParse = new RelayCommand(()=> 
                     {
-                        List.Clear();
+                        Articles.Clear();
                         Parser.Settings = new HabrSettings(StartPage,EndPage);
                         Parser.Start();
                     });
@@ -79,7 +79,7 @@ namespace Parser_habr.ViewModels
             {
                 if (stopParse == null)
                 {
-                    stopParse = new RelayCommand(() =>{Parser.Stop();});
+                    stopParse = new RelayCommand(() => { Parser.Stop(); }, () => IsEmpty());
                 }
                 return stopParse;
             }
@@ -93,14 +93,31 @@ namespace Parser_habr.ViewModels
             {
                 if (saveExcel == null)
                 {
-                    saveExcel = new RelayCommand(() => { GenerateFile.Go(List); }, () => List != null);
+                    saveExcel = new RelayCommand(() => { GenerateFile.Go(Articles); }, () => IsEmpty());
                 }
                 return saveExcel;
             }
         }
 
+        private ICommand saveXml;
+        public ICommand SaveXml
+        {
+            get
+            {
+                if (saveXml == null)
+                {
+                    saveXml = new RelayCommand(() => 
+                    {
+                        var hub = Articles.ToList();
+                        Genarate.Go(Parser_habr.Articles.Craete(hub)); 
+                    
+                    }, () => IsEmpty());
+                }
+                return saveXml;
+            }
+        }
 
-
+        private bool IsEmpty()=> (Articles.Count > 0) ? true : false;
 
     }
 }

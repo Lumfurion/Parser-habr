@@ -1,8 +1,5 @@
 ﻿using Excel = Microsoft.Office.Interop.Excel;
 using System.Data;
-using System.Reflection;
-using System.Collections.ObjectModel;
-
 namespace Saver.ExcelSaver
 {
     static class ExcelExport
@@ -41,36 +38,6 @@ namespace Saver.ExcelSaver
             excelWorkBook.SaveAs(path);
             excelWorkBook.Close();
             excelApp.Quit();
-        }
-
-
-        public static DataTable ConvertToDataTable<T>(ObservableCollection<T> models)// T : Generic Class
-        {
-            DataTable dataTable = new DataTable(typeof(T).Name);
-
-            //Get all the properties
-            PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
-
-            // Loop through all the properties            
-            // Adding Column to our datatable
-            foreach (PropertyInfo prop in Props)
-            {
-                //Setting column names as Property names  
-                dataTable.Columns.Add(prop.Name);
-            }
-            // Adding Row
-            foreach (T item in models)
-            {
-                var values = new object[Props.Length];
-                for (int i = 0; i < Props.Length; i++)
-                {
-                    //inserting property values to datatable rows  
-                    values[i] = Props[i].GetValue(item, null);
-                }
-                // Finally add value to datatable  
-                dataTable.Rows.Add(values);
-            }
-            return dataTable;
         }
     }
 }
