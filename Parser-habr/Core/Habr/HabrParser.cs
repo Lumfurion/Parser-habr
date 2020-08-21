@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Xml.Serialization;
 using AngleSharp.Html.Dom;
 using ParserBase;
+
 
 
 namespace Parser_habr
 {
     [XmlRoot(ElementName = "article")]
     public class Article
-    {
+    {   
+        public int Id { set; get; }
         [XmlElement(ElementName = "title")]
         public string Title { get; set; }
         [XmlElement(ElementName = "text")]
@@ -38,6 +41,22 @@ namespace Parser_habr
             return art;
         }
     }
+
+    public class ArticleContext : DbContext
+    {
+        public ArticleContext() : base("DBConnect") { }
+        public DbSet<Article> Articles { get; set; }
+        public static void Save<T>(List<T> item) where T : class
+        {
+            using (var db = new ArticleContext())
+            {   //Должны определить какую таблицу базу данных будем сохранять
+                db.Set<T>().AddRange(item);
+                db.SaveChanges();//Сохраняем все изменения, сделанные в базовой базе данных.
+            }
+        }
+
+    }
+
 
     /// <summary>
     ///Реализуем сам интерфейс для парсинга сайта  https://habr.com/ru/all ,

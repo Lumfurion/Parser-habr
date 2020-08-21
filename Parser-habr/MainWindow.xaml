@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Parser_habr.ViewModels"
         mc:Ignorable="d"
-        Title="Parser Habr v0.02" Height="866.6" Width="978.15"
+        Title="Parser Habr v0.03" Height="866.6" Width="978.15"
         WindowStartupLocation="CenterScreen"
         >
-       
+
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -55,10 +55,10 @@
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="116*"/>
-                <RowDefinition Height="104*"/>
-                <RowDefinition Height="109*"/>
-                <RowDefinition Height="507*"/>
+                <RowDefinition Height="58*"/>
+                <RowDefinition Height="52*"/>
+                <RowDefinition Height="69*"/>
+                <RowDefinition Height="239*"/>
             </Grid.RowDefinitions>
 
             <GroupBox Margin="2" Header="Выбор страниц" FontWeight="Bold">
@@ -97,10 +97,12 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="31*"/>
                             <RowDefinition Height="31*"/>
-                            <RowDefinition Height="15*"/>
+                            <RowDefinition Height="31*"/>
+                            <RowDefinition Height="18*"/>
                         </Grid.RowDefinitions>
                         <Button MinWidth="70" MaxWidth="80"  Command="{Binding SaveExcel}" Content="в Excel" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="5"/>
                         <Button Grid.Row="1" MinWidth="70" MaxWidth="80"  Command="{Binding SaveXml}" Content="в Xml" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="5"/>
+                        <Button Grid.Row="2" MinWidth="70" MaxWidth="80"  Command="{Binding SaveDataBase}" Content="в Бд" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="5"/>
                     </Grid>
                 </GroupBox>
             </Grid>

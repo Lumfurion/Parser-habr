@@ -117,6 +117,25 @@ namespace Parser_habr.ViewModels
             }
         }
 
+        private ICommand saveDataBase;
+        public ICommand SaveDataBase
+        {
+            get
+            {
+                if (saveDataBase == null)
+                {
+                    saveDataBase = new RelayCommand(() =>
+                    {
+                        var art = Articles.ToList();
+                        ArticleContext.Save(art);
+
+                    }, () => IsEmpty());
+                }
+                return saveDataBase;
+            }
+        }
+
+
         private bool IsEmpty()=> (Articles.Count > 0) ? true : false;
 
     }
