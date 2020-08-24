@@ -79,6 +79,9 @@
     </ApplicationDefinition>
     <Compile Include="Core\Model\ModelBase.cs" />
     <Compile Include="Core\Command\RelayCommand.cs" />
+    <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\ArticleContext.cs" />
+    <Compile Include="Models\Articles.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

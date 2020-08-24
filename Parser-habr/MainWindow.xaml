@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Parser_habr.ViewModels"
         mc:Ignorable="d"
-        Title="Parser Habr v0.03" Height="866.6" Width="978.15"
+        Title="Parser Habr v0.04" Height="866.6" Width="978.15"
         WindowStartupLocation="CenterScreen"
         >
 

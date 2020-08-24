@@ -1,16 +1,15 @@
-﻿using Parser_habr.Core.Model;
-using Parser_habr.Core.Command;
-using ParserBase;
+﻿using ParserBase;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Linq;
+using Parser_habr.Models;
 using Saver.ExcelSaver;
 using Saver.XmlSaver;
-using System.Linq;
-
+using Parser_habr.Core.Model;
+using Parser_habr.Core.Command;
 namespace Parser_habr.ViewModels
 {
-    
     class MainWindowViewModel:ModelBase
     {
         readonly ParserWorker<Article[]> Parser;
@@ -109,7 +108,7 @@ namespace Parser_habr.ViewModels
                     saveXml = new RelayCommand(() => 
                     {
                         var hub = Articles.ToList();
-                        Genarate.Go(Parser_habr.Articles.Craete(hub)); 
+                        Genarate.Go(Models.Articles.Craete(hub)); 
                     
                     }, () => IsEmpty());
                 }
@@ -134,9 +133,6 @@ namespace Parser_habr.ViewModels
                 return saveDataBase;
             }
         }
-
-
         private bool IsEmpty()=> (Articles.Count > 0) ? true : false;
-
     }
 }
