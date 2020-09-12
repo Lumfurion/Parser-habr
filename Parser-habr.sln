@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserBase", "ParserBase\Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saver", "Saver\Saver.csproj", "{9CD322E8-F9B4-4E34-8FA1-03AD923497AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolkitMVVM", "LightToolkitMVVM\ToolkitMVVM.csproj", "{97E5692A-9A26-4B6C-BF40-02FE4BFE6746}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overlay", "Overlay\Overlay.csproj", "{BC885A83-6C19-4027-AB72-5205117609A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{9CD322E8-F9B4-4E34-8FA1-03AD923497AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CD322E8-F9B4-4E34-8FA1-03AD923497AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CD322E8-F9B4-4E34-8FA1-03AD923497AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97E5692A-9A26-4B6C-BF40-02FE4BFE6746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97E5692A-9A26-4B6C-BF40-02FE4BFE6746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97E5692A-9A26-4B6C-BF40-02FE4BFE6746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97E5692A-9A26-4B6C-BF40-02FE4BFE6746}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC885A83-6C19-4027-AB72-5205117609A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC885A83-6C19-4027-AB72-5205117609A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC885A83-6C19-4027-AB72-5205117609A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC885A83-6C19-4027-AB72-5205117609A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

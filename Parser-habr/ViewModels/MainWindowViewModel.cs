@@ -1,16 +1,17 @@
 ﻿using ParserBase;
 using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Input;
 using System.Linq;
 using Parser_habr.Models;
 using Saver.ExcelSaver;
 using Saver.XmlSaver;
-using Parser_habr.Core.Model;
-using Parser_habr.Core.Command;
+using ToolkitMVVM;
+using Overlay;
+using System.Collections.Generic;
+
 namespace Parser_habr.ViewModels
 {
-    class MainWindowViewModel:ModelBase
+    class MainWindowViewModel : ModelBase
     {
         readonly ParserWorker<Article[]> Parser;
         public ObservableCollection<Article> Articles { get; set; }
@@ -37,22 +38,29 @@ namespace Parser_habr.ViewModels
         }
         public MainWindowViewModel()
         {
+            OverlayService.GetInstance().Show = (str) =>//инициализация оверлея
+            {
+                OverlayService.GetInstance().Text = str;
+            };
             Articles = new ObservableCollection<Article>();
             Parser = new ParserWorker<Article[]>(new HabrParser());
             //По заврешению работы парсера будет появляться уведомляющее окно.
-            Parser.OnComplited += Parser_OnComplited;
-            //Заполняем наш listBox заголовками
-            Parser.OnNewData += Parser_OnNewData;
-        }
-        public void Parser_OnComplited(object o) { MessageBox.Show("Работа завершена!"); }
-        public void Parser_OnNewData(object o, Article[] item) 
-        {
-            foreach (var i in item)
+            Parser.OnComplited += (obj) => 
             {
-                Articles.Add(new Article(i.Title, i.Text, i.Image));
-            }
-        }
+                MessageBoxNotification.Show("Парсер сделал обработку данных.\nДанные готовы для сохранения в файл.\nДля этого слева боковая панель пукт Сохранение.", 5);
+            };
+            //Заполняем наш listBox заголовками
+            Parser.OnNewData += (object o, Article[] item) =>
+            {
+                foreach (var i in item)
+                {
+                    Articles.Add(new Article(i.Title, i.Text, i.Image));
+                }
+            };
 
+
+        }
+    
         private ICommand goParse;
         public ICommand GoParse
         {
@@ -78,7 +86,7 @@ namespace Parser_habr.ViewModels
             {
                 if (stopParse == null)
                 {
-                    stopParse = new RelayCommand(() => { Parser.Stop(); }, () => IsEmpty());
+                    stopParse = new RelayCommand(() => { Parser.Stop(); });
                 }
                 return stopParse;
             }
@@ -92,7 +100,22 @@ namespace Parser_habr.ViewModels
             {
                 if (saveExcel == null)
                 {
-                    saveExcel = new RelayCommand(() => { GenerateFile.Go(Articles); }, () => IsEmpty());
+                   
+                    saveExcel = new RelayCommand(() =>
+                    {
+
+                        List<ArticleExl> artl = new List<ArticleExl>();
+                        foreach (var art in Articles)
+                        {
+                            var title = art.Title;
+                            var image = art.Image;
+                            var text = art.Text;
+
+                            artl.Add(new ArticleExl(title, text, image));
+                        }
+                        GenerateFile.Go(artl);
+                    
+                    }, () => IsEmpty());
                 }
                 return saveExcel;
             }

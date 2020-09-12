@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 
-namespace Parser_habr.Core.Model
+namespace ToolkitMVVM
 {
     /// <summary>
     /// Base class for all ViewModel classes in the application. Provides support for 

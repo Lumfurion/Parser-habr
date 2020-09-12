@@ -4,15 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:Parser_habr.ViewModels"
+        xmlns:m="clr-namespace:Parser_habr.Models"
         mc:Ignorable="d"
-        Title="Parser Habr v0.04" Height="866.6" Width="978.15"
-        WindowStartupLocation="CenterScreen"
+        Title="Parser Habr v0.05" Height="866.6" Width="978.15"
+        WindowStartupLocation="CenterScreen"  ShowInTaskbar="False"
         >
 
+ 
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     <Window.Resources>
+        <ObjectDataProvider
+            x:Key="OverlayService"
+            MethodName="GetInstance"
+            ObjectType="{x:Type m:OverlayService}" />
+        
         <Style TargetType="Button">
             <Setter  Property="FontSize" Value="14"/>
             <Setter  Property="BorderThickness" Value="0"/>
@@ -20,6 +27,8 @@
             <Setter  Property="Background" Value="Black"/>
             <Setter  Property="FontWeight" Value="Normal"/>
         </Style>
+
+        
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -106,6 +115,45 @@
                     </Grid>
                 </GroupBox>
             </Grid>
+            
         </Grid>
+
+
+       
+        <Grid
+            Name="overlay"
+            Grid.ColumnSpan="2"
+            Background="#7F302E31">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=overlayText, Path=Text}" Value="">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
+            <Border
+                Width="500"
+                Height="300"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="White"
+                CornerRadius="7">
+                <Grid>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock
+                            Name="overlayText"
+                            FontSize="30"
+                            Text="{Binding Source={StaticResource OverlayService}, Path=Text}"
+                            TextAlignment="Center" />
+                      
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+
+
     </Grid>
 </Window>

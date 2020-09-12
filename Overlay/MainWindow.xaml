@@ -1,0 +1,31 @@
+﻿<Window x:Class="Overlay.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Overlay"
+        mc:Ignorable="d"
+        Width="500" Height="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  
+        AllowsTransparency="True" Background="{x:Null}" WindowStyle="None">
+    <Window.DataContext>
+        <vm:MessageBoxNotification/>
+    </Window.DataContext>
+    <Border
+                Width="500"
+                Height="300"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="White"
+                CornerRadius="7">
+        <Grid>
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock 
+                            Name="overlayText"
+                            FontSize="25"
+                            Text="{Binding Settings.Text}"
+                            TextAlignment="Center"  TextWrapping="Wrap" />
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

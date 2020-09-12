@@ -7,6 +7,8 @@ namespace Parser_habr
         public MainWindow()
         {
             InitializeComponent();
+       
+           
         }
     }
 }

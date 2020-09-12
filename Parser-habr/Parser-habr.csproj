@@ -77,11 +77,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Core\Model\ModelBase.cs" />
-    <Compile Include="Core\Command\RelayCommand.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\ArticleContext.cs" />
+    <Compile Include="Models\ArticleExl.cs" />
     <Compile Include="Models\Articles.cs" />
+    <Compile Include="Models\OverlayService.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +126,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LightToolkitMVVM\ToolkitMVVM.csproj">
+      <Project>{97e5692a-9a26-4b6c-bf40-02fe4bfe6746}</Project>
+      <Name>ToolkitMVVM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Overlay\Overlay.csproj">
+      <Project>{bc885a83-6c19-4027-ab72-5205117609a3}</Project>
+      <Name>Overlay</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ParserBase\ParserBase.csproj">
       <Project>{ee71d079-185f-48f1-9aff-c9963de3503c}</Project>
       <Name>ParserBase</Name>

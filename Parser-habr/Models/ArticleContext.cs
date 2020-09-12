@@ -1,9 +1,11 @@
 ﻿using Microsoft.Win32;
+using Overlay;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.IO;
 using System.Threading.Tasks;
-using System.Windows;
+
 
 namespace Parser_habr.Models
 {
@@ -14,25 +16,30 @@ namespace Parser_habr.Models
        
         public  static   void Save<T>(List<T> item) where T : class
         {
-           
+            OverlayService.GetInstance().Show = (str) =>//инициализация оверлея
+            {
+                OverlayService.GetInstance().Text = str;
+            };
+
             Task.Run(() =>
             {
                 SaveFileDialog sld = new SaveFileDialog();
                 sld.Filter = "MDF files (*.MDF)|*.MDF";
                 if (sld.ShowDialog() == true)
                 {
-                    MessageBox.Show("Подождите идет сохранение в базу данных", "Подождите идет", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    OverlayService.GetInstance().Show($"Идет сохранение в базу данных...");
                     string filename = sld.FileName;
                     var builder = new SqlConnectionStringBuilder();
                     builder.DataSource = @"(localdb)\MSSQLLocalDB";
                     builder.AttachDBFilename = filename;
+                    builder.InitialCatalog = Path.GetFileNameWithoutExtension(filename);
                     builder.IntegratedSecurity = true;
                     string connectionString = builder.ToString();
                     using (var db = new ArticleContext(connectionString))
                     {
                         db.Set<T>().AddRange(item);
                         db.SaveChanges();//Сохраняем все изменения, сделанные в базовой базе данных.
-                        MessageBox.Show("Данные сохранение в базу данных");
+                        OverlayService.GetInstance().Close();
                     }
 
                 }

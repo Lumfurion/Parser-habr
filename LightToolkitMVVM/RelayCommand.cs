@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace Parser_habr.Core.Command
+namespace ToolkitMVVM
 {
     /// <summary>
     /// A command whose sole purpose is to relay its functionality to other

@@ -9,6 +9,12 @@ namespace ParserBase
     public class ParserWorker<T> where T : class
     {
         #region Cвойства.
+        T items { get; set; }
+        public T Items
+        {
+            get { return items; }
+        }
+
         /// <summary>
         /// Парсер.
         /// </summary>
@@ -93,6 +99,7 @@ namespace ParserBase
                     HtmlParser domParser = new HtmlParser();//Парсер из AngleSharp.
                     IHtmlDocument document = await domParser.ParseDocumentAsync(source);//получить код с которым можно работать.
                     T result = parser.Parse(document);
+                    items = result;
                     OnNewData?.Invoke(this, result);
                 }
             }
