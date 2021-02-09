@@ -6,4 +6,4 @@
 Windows Forms устаревшая технология того было переписано под wpf/mvvm и добавлена возможность сохранение разнычные типы файлов.  
 Парсинг с возможностью  сохранения данных после парсинга в 3 форматах.
 
-![alt tag](https://cdn1.savepice.ru/uploads/2021/1/6/b189b9ba5750807b7d1d72a7dd426a00-full.png)
+![alt tag](https://i.imgur.com/O7ljhns.png)
